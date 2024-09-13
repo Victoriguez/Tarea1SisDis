@@ -1,0 +1,27 @@
+version: '3'
+services:
+  redis:
+    image: bitnami/redis:latest
+    container_name: redis-cache
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - app-network
+
+  grpc-server:
+    build: ./src
+    container_name: grpc-server
+    ports:
+      - "50051:50051"
+    depends_on:
+      - redis
+    networks:
+      - app-network
+    volumes:
+      - ./src:/app  # Monta el código fuente
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package dns;
+
+service DNSCache {
+    rpc ResolveDNS(DNSRequest) returns (DNSResponse);
+}
+
+message DNSRequest {
+    string domain = 1;
+}
+
+message DNSResponse {
+    string ip = 1;
+    bool cache_hit = 2;
+}
