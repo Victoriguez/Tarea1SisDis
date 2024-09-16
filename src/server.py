@@ -8,8 +8,8 @@ from collections import defaultdict
 from concurrent import futures
 import dns_cache_pb2
 import dns_cache_pb2_grpc
-import matplotlib.pyplot as plt
 import os
+import matplotlib.pyplot as plt
 
 # Ruta al archivo CSV
 csv_file_path = os.path.join(os.path.dirname(__file__), 'data/3rd_lev_domains.csv')
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     dominios = cargar_dominios(csv_file_path)
 
     # Generar 75 mil consultas
-    consultas = generar_consultas(dominios)
+    consultas = generar_consultas(dominios, num_consultas=75000)
 
     # Variables para contar hits y misses
     total_hits = 0
